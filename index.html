@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoDigital - Inclusão Digital e Sustentabilidade</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div id="areaLogin" class="loginBox">
+<h2><i class="fa-solid fa-user"></i> Acesso ao Sistema</h2>
+
+<input type="email" id="email" placeholder="Digite seu e-mail">
+<input type="password" id="senha" placeholder="Digite sua senha">
+
+<button onclick="loginUsuario()">Entrar</button>
+<button onclick="registrarUsuario()">Cadastrar</button>
+</div>
+
+<!-- ================= SISTEMA ================= -->
+<div id="areaSistema" style="display:none;">
+
+<nav class="navbar">
+<div class="logo">
+<i class="fa-solid fa-recycle"></i> EcoDigital
+</div>
+
+<ul class="menu">
+<li onclick="mostrarAba('inicio')"><i class="fa-solid fa-house"></i> Início</li>
+<li onclick="mostrarAba('registro')"><i class="fa-solid fa-laptop"></i> Registro</li>
+<li onclick="mostrarAba('impacto')"><i class="fa-solid fa-leaf"></i> Impacto</li>
+<li onclick="mostrarAba('quiz')"><i class="fa-solid fa-circle-question"></i> Quiz</li>
+<li onclick="mostrarAba('sobre')"><i class="fa-solid fa-info-circle"></i> Sobre</li>
+</ul>
+
+<div class="usuarioInfo">
+Usuário: <strong id="usuarioLogado"></strong>
+<button onclick="logoutUsuario()">Sair</button>
+</div>
+</nav>
+
+<div class="container">
+
+<!-- ================= INÍCIO ================= -->
+<section id="inicio" class="aba ativa">
+
+<h1>Resíduos de Equipamentos Eletroeletrônicos (REEE)</h1>
+
+<p>
+O crescimento acelerado da tecnologia transformou profundamente a sociedade moderna.
+Computadores, celulares, tablets e dispositivos digitais tornaram-se essenciais
+para educação, trabalho, comunicação e acesso à informação.
+Entretanto, esse avanço também trouxe um desafio ambiental significativo:
+o aumento expressivo da geração de resíduos eletrônicos.
+</p>
+
+<p>
+Os Resíduos de Equipamentos Eletroeletrônicos (REEE) correspondem a todo dispositivo
+que depende de energia elétrica ou baterias para funcionar e que foi descartado
+por seu proprietário. Entre eles estão computadores, notebooks, monitores,
+impressoras, celulares, roteadores e componentes internos como placas-mãe,
+HDs e memórias.
+</p>
+
+<h2>Impactos Ambientais</h2>
+
+<p>
+Grande parte desses equipamentos contém substâncias tóxicas como chumbo,
+mercúrio e cádmio. Quando descartados incorretamente no lixo comum,
+esses materiais podem contaminar o solo, a água e gerar riscos à saúde pública.
+</p>
+
+<ul>
+<li>Contaminação de lençóis freáticos;</li>
+<li>Poluição do solo por metais pesados;</li>
+<li>Emissão de gases poluentes na queima irregular;</li>
+<li>Aumento da pressão sobre aterros sanitários.</li>
+</ul>
+
+<h2>Impactos Sociais</h2>
+
+<p>
+Apesar dos riscos ambientais, muitos equipamentos descartados ainda possuem
+potencial de reutilização. O recondicionamento e a doação de computadores
+podem promover inclusão digital, ampliando o acesso à tecnologia
+para comunidades em situação de vulnerabilidade.
+</p>
+
+<h2>Propósito do EcoDigital</h2>
+
+<p>
+O EcoDigital é uma plataforma desenvolvida na Atividade Extensionista II
+do curso de Sistemas de Informação, com aplicação no município de
+São Paulo – bairro Vila Sabrina.
+</p>
+
+<p>
+Seu objetivo é integrar tecnologia e responsabilidade socioambiental,
+promovendo conscientização, registro de resíduos eletrônicos e
+educação ambiental por meio de ferramentas interativas.
+</p>
+
+<h2>Como utilizar a plataforma</h2>
+
+<ul>
+<li><strong>Registro:</strong> permite cadastrar equipamentos eletrônicos inutilizados para mapeamento ambiental.</li>
+<li><strong>Impacto Ambiental:</strong> apresenta estimativas de redução de CO₂ e economia de energia ao reutilizar equipamentos.</li>
+<li><strong>Quiz:</strong> ferramenta educativa para avaliar o conhecimento ambiental.</li>
+<li><strong>Sobre:</strong> informações acadêmicas do projeto e alinhamento ao ODS 12 da ONU.</li>
+</ul>
+
+</section>
+
+<!-- ================= REGISTRO ================= -->
+<section id="registro" class="aba">
+<h2>Registro de Equipamentos Eletrônicos</h2>
+
+<p>
+Cadastre equipamentos inutilizados para contribuir com o mapeamento
+de resíduos eletrônicos e possíveis ações de reaproveitamento.
+</p>
+
+<label>Categoria:</label>
+<select id="categoria">
+<option value="">Selecione</option>
+<option>Computador</option>
+<option>Notebook</option>
+<option>Monitor</option>
+<option>Celular</option>
+<option>Impressora</option>
+</select>
+
+<label>Estado:</label>
+<select id="estado">
+<option value="">Selecione</option>
+<option>Funcionando</option>
+<option>Precisa de reparo</option>
+<option>Inutilizável</option>
+</select>
+
+<label>Ano aproximado:</label>
+<input type="number" id="ano">
+
+<button onclick="registrarEquipamento()">Registrar</button>
+
+<hr>
+
+<button onclick="listarEquipamentos()">Visualizar Registros</button>
+<ul id="listaEquipamentos"></ul>
+
+</section>
+
+<!-- ================= IMPACTO ================= -->
+<section id="impacto" class="aba">
+<h2>Calculadora Avançada de Impacto Ambiental</h2>
+
+<label>Tipo de Equipamento:</label>
+<select id="tipoImpacto">
+<option value="">Selecione</option>
+<option value="computador">Computador</option>
+<option value="notebook">Notebook</option>
+<option value="monitor">Monitor</option>
+<option value="celular">Celular</option>
+<option value="impressora">Impressora</option>
+</select>
+
+<label>Quantidade:</label>
+<input type="number" id="quantidadeImpacto">
+
+<button onclick="calcularImpactoAvancado()">Calcular Impacto</button>
+
+<div id="resultadoImpacto"></div>
+
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section id="quiz" class="aba">
+<h2>Quiz de Conscientização Ambiental</h2>
+
+<div id="quizContainer"></div>
+<button onclick="verificarQuiz()">Ver Resultado</button>
+<p id="resultadoQuiz"></p>
+
+</section>
+
+<!-- ================= SOBRE ================= -->
+<section id="sobre" class="aba">
+<h2>Sobre o Projeto</h2>
+
+<p>
+Este projeto foi desenvolvido na disciplina Atividade Extensionista II:
+Tecnologia Aplicada à Inclusão Digital.
+</p>
+
+<p>
+Tecnologias utilizadas: HTML, CSS, JavaScript e Firebase (Authentication e Firestore).
+</p>
+
+<p>
+Alinhado ao Objetivo de Desenvolvimento Sustentável (ODS 12)
+– Consumo e Produção Responsáveis.
+</p>
+
+</section>
+
+</div>
+</div>
+
+<script src="script.js"></script>
+<script type="module" src="firebase.js"></script>
+
+</body>
+</html>
